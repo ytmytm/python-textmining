@@ -21,9 +21,9 @@ def termdocumentmatrix_example():
     tdm.write_csv('matrix.csv', cutoff=1)
     # Instead of writing out the matrix you can also access its rows directly.
     # Let's print them to the screen.
-    print '\ntermdocumentmatrix_example 1\n'
+    print('\ntermdocumentmatrix_example 1\n')
     for row in tdm.rows(cutoff=1):
-        print row
+        print(row)
 
 def splitby_example():
     # The splitby function in the textmining package is very useful. It
@@ -47,12 +47,12 @@ def splitby_example():
 
     """
     lines = text.splitlines()
-    print '\nsplitby_example 1\n'
+    print('\nsplitby_example 1\n')
     for paragraph in textmining.splitby(lines):
         # paragraph is a list of lines.
         # Notice that the last paragraph will just contain
         # lines of spaces as there is no text in it.
-        print paragraph
+        print(paragraph)
 
     # Now let's use a custom split function to process a more complicated
     # document structure. We want to extract three cleaned-up documents
@@ -87,7 +87,7 @@ def splitby_example():
 
     # Loop over documents
     lines = text.splitlines()
-    print '\nsplitby_example 2\n'
+    print('\nsplitby_example 2\n')
     for document in textmining.splitby(lines, document_boundary):
         # Skip if first line (document[0]) doesn't match document structure
         if not document[0].strip().startswith('Document'):
@@ -96,17 +96,17 @@ def splitby_example():
         # whitespace to create a clean document.
         clean_lines = [line.strip() for line in document if line.strip()]
         # Print out clean document
-        print '\n'.join(clean_lines)
-        print
+        print('\n'.join(clean_lines))
+        print()
 
 def dictionary_example():
     # Print ten most common words in the dictionary
     freq_word = [(counts[0][0], word) for (word, counts) in \
-      textmining.dictionary.items()]
+      list(textmining.dictionary.items())]
     freq_word.sort(reverse=True)
-    print '\ndictionary_example 1\n'
+    print('\ndictionary_example 1\n')
     for freq, word in freq_word[:10]:
-        print word, freq
+        print(word, freq)
 
     # The same word can be used in many different contexts in the English
     # language. The dictionary in the textmining module contains the
@@ -114,8 +114,8 @@ def dictionary_example():
     # word. An explanation of the part-of-speech codes is in
     # doc/poscodes.html. Here are the part-of-speech frequencies for the
     # word 'open'.
-    print '\ndictionary_example 2\n'
-    print textmining.dictionary['open']
+    print('\ndictionary_example 2\n')
+    print(textmining.dictionary['open'])
 
 def names_example():
     # The textmining module contains three dictionaries of names:
@@ -123,17 +123,17 @@ def names_example():
     # percent frequency of occurence in US census. 
 
     # Find relative frequency of some male names
-    print '\nnames_example 1\n'
+    print('\nnames_example 1\n')
     for name in ('john', 'tom', 'william', 'boris'):
         freq = textmining.names_male[name]
-        print name, freq
+        print(name, freq)
 
     # Find 10 most common last names
-    f = [(freq, name) for (name, freq) in textmining.names_last.items()]
+    f = [(freq, name) for (name, freq) in list(textmining.names_last.items())]
     f.sort(reverse=True)
-    print '\nnames_example 2\n'
+    print('\nnames_example 2\n')
     for freq, name in f[:10]:
-        print name, freq
+        print(name, freq)
 
 def bigram_collocations_example():
     # Find the 10 most statistically significant two word phrases in the
@@ -143,9 +143,9 @@ def bigram_collocations_example():
     text = open(sample_text_file).read()
     words = textmining.simple_tokenize(text)
     bigrams = textmining.bigram_collocations(words)
-    print '\nbigram_collocations_example 1\n'
+    print('\nbigram_collocations_example 1\n')
     for bigram in bigrams[:10]:
-        print ' '.join(bigram)
+        print(' '.join(bigram))
 
 # Run each of the examples
 termdocumentmatrix_example()

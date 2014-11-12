@@ -40,7 +40,7 @@ def read_dictionary():
         word = fields[0]
         freqs = [int(x) for x in fields[1::2]]
         pos = fields[2::2]
-        dictionary[word] = zip(freqs, pos)
+        dictionary[word] = list(zip(freqs, pos))
     f.close()
     return dictionary
     
@@ -157,7 +157,7 @@ def editdistance(a, b):
         # Make sure n <= m, to use O(min(n,m)) space
         a, b = b, a
         n, m = m, n
-    current = range(n + 1)
+    current = list(range(n + 1))
     for i in range(1, m + 1):
         previous, current = current, [i] + [0] * n
         for j in range(1, n+1):
@@ -330,6 +330,6 @@ class TermDocumentMatrix(object):
         the matrix.
 
         """
-        f = csv.writer(open(filename, 'wb'))
+        f = csv.writer(open(filename, 'wt'))
         for row in self.rows(cutoff=cutoff):
             f.writerow(row)

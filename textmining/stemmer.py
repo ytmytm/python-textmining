@@ -346,5 +346,5 @@ if __name__ == '__main__':
                 if w == '':
                     break
                 w = w[:-1]
-                print p.stem(w, 0,len(w)-1), w
+                print((p.stem(w, 0,len(w)-1), w))
 

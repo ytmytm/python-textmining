@@ -1,6 +1,6 @@
 import re
-import stemmer
-# import nltk.stem as stemmer
+# import stemmer
+import nltk.stem as stemmer
 import csv
 import os
 

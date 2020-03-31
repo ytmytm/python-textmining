@@ -331,6 +331,6 @@ class TermDocumentMatrix(object):
         the matrix.
 
         """
-        f = csv.writer(open(filename, 'writer'))
+        f = csv.writer(open(filename, 'w'))
         for row in self.rows(cutoff=cutoff):
             f.writerow(row)

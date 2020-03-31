@@ -1,5 +1,6 @@
 import re
-import stemmer
+# import stemmer
+import nltk.stem as stemmer
 import csv
 import os
 
@@ -43,7 +44,7 @@ def read_dictionary():
         dictionary[word] = list(zip(freqs, pos))
     f.close()
     return dictionary
-    
+
 def read_names(name_file):
     """
     Read name file and return a dict containing names and frequencies.
@@ -113,7 +114,7 @@ def collapse_ngrams(words, ngrams):
 
     words = ['new', 'york', 'city', 'is', 'the', 'big', 'apple']
     ngrams = [('new', 'york', 'city'), ('big', 'apple')]
-    
+
     collapse_ngrams(words, ngrams) then gives:
     ['new_york_city', 'is', 'the', 'big_apple']
 
@@ -144,7 +145,7 @@ def stem(word):
     else:
         # Assume input is a list ot words
         return [p.stem(w, 0, len(w) - 1) for w in word]
-        
+
 def editdistance(a, b):
     """
     Calculates the Levenshtein distance between a and b.
@@ -330,6 +331,6 @@ class TermDocumentMatrix(object):
         the matrix.
 
         """
-        f = csv.writer(open(filename, 'wt'))
+        f = csv.writer(open(filename, 'w'))
         for row in self.rows(cutoff=cutoff):
             f.writerow(row)

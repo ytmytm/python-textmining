@@ -1,6 +1,9 @@
 import re
-# import stemmer
-import nltk.stem as stemmer
+import six
+if six.PY3:
+    import nltk.stem as stemmer
+else:
+    import stemmer
 import csv
 import os
 

@@ -1,6 +1,9 @@
 import re
-# import stemmer
-import nltk.stem as stemmer
+import six
+if six.PY3:
+    import nltk.stem as stemmer
+else:
+    import stemmer
 import csv
 import os
 
@@ -331,6 +334,10 @@ class TermDocumentMatrix(object):
         the matrix.
 
         """
-        f = csv.writer(open(filename, 'w'))
+        import six
+        if six.PY3:
+            f = csv.writer(open(filename, 'w'))
+        else:
+            f = csv.writer(open(filename, 'wt'))
         for row in self.rows(cutoff=cutoff):
             f.writerow(row)
